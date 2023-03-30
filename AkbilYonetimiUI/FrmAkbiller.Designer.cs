@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAkbiller));
             menuStrip1 = new MenuStrip();
             aNASAYFAToolStripMenuItem = new ToolStripMenuItem();
             cikisYAPToolStripMenuItem = new ToolStripMenuItem();
@@ -48,7 +49,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { aNASAYFAToolStripMenuItem, cikisYAPToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(375, 24);
+            menuStrip1.Size = new Size(497, 24);
             menuStrip1.TabIndex = 0;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -76,10 +77,9 @@
             groupBox1.Controls.Add(maskedTextBoxAkbilNo);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label1);
-            groupBox1.Dock = DockStyle.Top;
-            groupBox1.Location = new Point(0, 24);
+            groupBox1.Location = new Point(0, 181);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(375, 111);
+            groupBox1.Size = new Size(444, 88);
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             // 
@@ -87,7 +87,7 @@
             // 
             cmbBoxAkbilTipleri.FormattingEnabled = true;
             cmbBoxAkbilTipleri.Items.AddRange(new object[] { "Öğrenci", "Tam ", "Anne ", "65+", "Öğretmen", "Polis", "Asker", "Engelli", "Sağlık Çalışanı" });
-            cmbBoxAkbilTipleri.Location = new Point(82, 53);
+            cmbBoxAkbilTipleri.Location = new Point(94, 53);
             cmbBoxAkbilTipleri.Name = "cmbBoxAkbilTipleri";
             cmbBoxAkbilTipleri.Size = new Size(149, 23);
             cmbBoxAkbilTipleri.TabIndex = 3;
@@ -95,7 +95,7 @@
             // btnKaydet
             // 
             btnKaydet.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            btnKaydet.Location = new Point(242, 21);
+            btnKaydet.Location = new Point(341, 22);
             btnKaydet.Name = "btnKaydet";
             btnKaydet.Size = new Size(97, 55);
             btnKaydet.TabIndex = 2;
@@ -105,7 +105,7 @@
             // 
             // maskedTextBoxAkbilNo
             // 
-            maskedTextBoxAkbilNo.Location = new Point(82, 21);
+            maskedTextBoxAkbilNo.Location = new Point(94, 16);
             maskedTextBoxAkbilNo.Mask = "0000000000000000";
             maskedTextBoxAkbilNo.Name = "maskedTextBoxAkbilNo";
             maskedTextBoxAkbilNo.Size = new Size(149, 23);
@@ -114,8 +114,9 @@
             // label2
             // 
             label2.AutoSize = true;
+            label2.BackColor = Color.White;
             label2.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(9, 54);
+            label2.Location = new Point(6, 55);
             label2.Name = "label2";
             label2.Size = new Size(76, 17);
             label2.TabIndex = 1;
@@ -124,8 +125,9 @@
             // label1
             // 
             label1.AutoSize = true;
+            label1.BackColor = Color.White;
             label1.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(15, 27);
+            label1.Location = new Point(6, 22);
             label1.Name = "label1";
             label1.Size = new Size(70, 17);
             label1.TabIndex = 0;
@@ -140,11 +142,11 @@
             dataGridViewAkbiller.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewAkbiller.Dock = DockStyle.Bottom;
             dataGridViewAkbiller.GridColor = Color.DarkOliveGreen;
-            dataGridViewAkbiller.Location = new Point(0, 141);
+            dataGridViewAkbiller.Location = new Point(0, 275);
             dataGridViewAkbiller.Name = "dataGridViewAkbiller";
             dataGridViewAkbiller.ReadOnly = true;
             dataGridViewAkbiller.RowTemplate.Height = 25;
-            dataGridViewAkbiller.Size = new Size(375, 167);
+            dataGridViewAkbiller.Size = new Size(497, 142);
             dataGridViewAkbiller.TabIndex = 3;
             // 
             // FrmAkbiller
@@ -152,10 +154,14 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(375, 308);
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Stretch;
+            ClientSize = new Size(497, 417);
             Controls.Add(dataGridViewAkbiller);
             Controls.Add(groupBox1);
             Controls.Add(menuStrip1);
+            ForeColor = SystemColors.ControlText;
+            FormBorderStyle = FormBorderStyle.Fixed3D;
             MainMenuStrip = menuStrip1;
             Name = "FrmAkbiller";
             Text = "FrmAkbiller";

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmTalimatlar));
             menuStrip1 = new MenuStrip();
             anaMenuToolStripMenuItem = new ToolStripMenuItem();
             cıkısYapToolStripMenuItem = new ToolStripMenuItem();
@@ -80,7 +81,7 @@
             // 
             checkBoxTumunuGoster.AutoSize = true;
             checkBoxTumunuGoster.BackColor = SystemColors.ControlLightLight;
-            checkBoxTumunuGoster.Location = new Point(12, 286);
+            checkBoxTumunuGoster.Location = new Point(0, 233);
             checkBoxTumunuGoster.Name = "checkBoxTumunuGoster";
             checkBoxTumunuGoster.Size = new Size(108, 19);
             checkBoxTumunuGoster.TabIndex = 1;
@@ -118,10 +119,10 @@
             dataGridViewTalimatlar.AllowUserToOrderColumns = true;
             dataGridViewTalimatlar.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewTalimatlar.Dock = DockStyle.Bottom;
-            dataGridViewTalimatlar.Location = new Point(0, 311);
+            dataGridViewTalimatlar.Location = new Point(0, 258);
             dataGridViewTalimatlar.Name = "dataGridViewTalimatlar";
             dataGridViewTalimatlar.RowTemplate.Height = 25;
-            dataGridViewTalimatlar.Size = new Size(702, 92);
+            dataGridViewTalimatlar.Size = new Size(702, 145);
             dataGridViewTalimatlar.TabIndex = 4;
             // 
             // timerBekleyenTalimat
@@ -138,7 +139,7 @@
             // 
             talimatiYukleToolStripMenuItem.BackgroundImageLayout = ImageLayout.Stretch;
             talimatiYukleToolStripMenuItem.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            talimatiYukleToolStripMenuItem.Image = Properties.Resources.Adsız;
+            talimatiYukleToolStripMenuItem.Image = (Image)resources.GetObject("talimatiYukleToolStripMenuItem.Image");
             talimatiYukleToolStripMenuItem.Name = "talimatiYukleToolStripMenuItem";
             talimatiYukleToolStripMenuItem.Size = new Size(173, 22);
             talimatiYukleToolStripMenuItem.Text = "Talimatı Yükle";
