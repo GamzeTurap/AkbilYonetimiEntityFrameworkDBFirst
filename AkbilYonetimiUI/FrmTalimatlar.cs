@@ -206,22 +206,6 @@ namespace AkbilYonetimiUI
             frma.Show();
         }
 
-        private void cikisYapToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Güle Güle Çıkış Yapıldı");
-            //GenelIslemler.GirisYapanKullaniciAdSoyad = string.Empty;
-            //GenelIslemler.GirisYapanKullaniciID = 0;
-
-            foreach (Form item in Application.OpenForms)
-            {
-                if (item.Name != "frmGiris")
-                {
-                    item.Hide();
-                }
-            }
-            Application.OpenForms["frmGiris"].Show();
-        }
-
         private void timerBekleyenTalimat_Tick(object sender, EventArgs e)
         {
             if (lblBekleyenTalimat.Text != "0")
@@ -263,7 +247,7 @@ namespace AkbilYonetimiUI
                 } // foreach bitti
 
                 MessageBox.Show($"Seçtiğiniz {sayac} adet talimat iptal edilmiştir.");
-               
+
                 BekleyenTalimatSayisiniGetir();
                 TalimatlariDataGrideGetir(checkBoxTumunuGoster.Checked);
             }
@@ -307,12 +291,30 @@ namespace AkbilYonetimiUI
                 MessageBox.Show($"{sayac} adet talimat akbile yüklendi!");
                 BekleyenTalimatSayisiniGetir();
                 TalimatlariDataGrideGetir(checkBoxTumunuGoster.Checked);
-               
+
             }
             catch (Exception hata)
             {
                 MessageBox.Show("Beklenmedik bir hata oluştu! " + hata.Message);
             }
+        }
+
+        private void cıkısYapToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            MessageBox.Show("Güle Güle Çıkış Yapıldı");
+            GenelIslemler.GirisYapanKullaniciAdSoyad = string.Empty;
+            GenelIslemler.GirisYapanKullaniciID = 0;
+
+            frmGiris giris = new frmGiris();
+            foreach (Form item in Application.OpenForms)
+            {
+                if (item.Name != "frmGiris")
+                {
+                    item.Hide();
+                }
+            }
+            giris.Show();
         }
     }
 }

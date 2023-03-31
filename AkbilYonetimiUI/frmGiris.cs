@@ -24,20 +24,25 @@ namespace AkbilYonetimiUI
             {
                 txtEmail.Text = Email;
             }
-
-
             txtEmail.TabIndex = 1;
             txtSifre.TabIndex = 2;
             checkBoxHatirla.TabIndex = 3;
             btnGirisYap.TabIndex = 4;
             btnKayitOl.TabIndex = 5;
+            txtSifre.PasswordChar = '*';
+            checkBoxHatirla.Checked = false;
 
-            //Beni hatýrlayý Properties.Setting ile yapana kadar burasý böyle, kolaylýk saðlasýn diye.
-            txtEmail.Text = "gamzeturap@gmail.com";
-            txtSifre.Text = "1234";
+            if (Properties.Akbil.Default.BeniHatirla)
+            {
+                txtEmail.Text = Properties.Akbil.Default.BeniHatirlaKullaniciEmail;
+                txtSifre.Text = Properties.Akbil.Default.BeniHatirlaKullaniciSifre;
+            }
 
+            if (Properties.Akbil.Default.BeniHatirla)
+            {
+                BeniHatirlaAyarla();
+            }
         }
-
         private void btnKayitOl_Click(object sender, EventArgs e)
         {
             //bu formu gizleyeceðiz
@@ -46,13 +51,10 @@ namespace AkbilYonetimiUI
             frmKayitOl frm = new frmKayitOl();
             frm.Show();
         }
-
-
         private void btnGirisYap_Click(object sender, EventArgs e)
         {
             GirisYap();
         }
-
         private void GirisYap()
         {
             try
@@ -67,7 +69,7 @@ namespace AkbilYonetimiUI
                 //2) Girdiði email ve þifre veritabanýnda mevcut mu?
                 //select*from kullanýcýlar where email='' and sifre=''
                 var kullanici = context.Kullanicilars.FirstOrDefault(x => x.Email == txtEmail.Text && x.Parola == GenelIslemler.MD5Encryption(txtSifre.Text));
-                if (kullanici==null)
+                if (kullanici == null)
                 {
                     MessageBox.Show("Email ya da þifrenizi yanlýþ girdiniz!");
                     return;
@@ -80,15 +82,17 @@ namespace AkbilYonetimiUI
                     GenelIslemler.GirisYapanKullaniciID = kullanici.Id;
 
                     // beni hatýrlayý setting ile yazalým
+                    if (checkBoxHatirla.Checked)
+                    {
+                        BeniHatirlaAyarla();
+
+                    }
                     // temizlik
                     txtEmail.Clear(); txtSifre.Clear();
                     FrmAnasayfa frmAnasayfa = new FrmAnasayfa();
                     this.Hide();
                     frmAnasayfa.Show();
                 }
-
-
-
             }
             catch (Exception hata)
             {
@@ -98,30 +102,30 @@ namespace AkbilYonetimiUI
 
             }
         }
-
         private void checkBoxHatirla_CheckedChanged(object sender, EventArgs e)
-        {
-
-            BeniHatirlaAyarla();
-        }
-
-        private void BeniHatirlaAyarla()
         {
             if (checkBoxHatirla.Checked)
             {
-                Properties.Settings1.Default.BeniHatirla = true;
+                Properties.Akbil.Default.BeniHatirla = true;
+                Properties.Akbil.Default.Save();
             }
             else
             {
-                Properties.Settings1.Default.BeniHatirla = false;
+                Properties.Akbil.Default.BeniHatirla = false;
+                Properties.Akbil.Default.Save();
             }
+        }
+        private void BeniHatirlaAyarla()
+        {
+            Properties.Akbil.Default.BeniHatirlaKullaniciEmail = txtEmail.Text.Trim();
+            Properties.Akbil.Default.BeniHatirlaKullaniciSifre = txtSifre.Text.Trim();
+            Properties.Akbil.Default.Save();
         }
         private void txtSifre_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == Convert.ToChar(Keys.Enter)) // basýlan tuþ enter ise giriþ yapacak.
             {
                 GirisYap();
-
             }
         }
     }

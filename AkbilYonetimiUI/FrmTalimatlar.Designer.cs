@@ -76,6 +76,7 @@
             cıkısYapToolStripMenuItem.Name = "cıkısYapToolStripMenuItem";
             cıkısYapToolStripMenuItem.Size = new Size(75, 21);
             cıkısYapToolStripMenuItem.Text = "Çıkış Yap";
+            cıkısYapToolStripMenuItem.Click += cıkısYapToolStripMenuItem_Click;
             // 
             // checkBoxTumunuGoster
             // 

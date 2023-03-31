@@ -87,6 +87,7 @@
             checkBoxHatirla.TabIndex = 3;
             checkBoxHatirla.Text = "Beni Hatırla!";
             checkBoxHatirla.UseVisualStyleBackColor = true;
+            checkBoxHatirla.CheckedChanged += checkBoxHatirla_CheckedChanged;
             // 
             // txtSifre
             // 

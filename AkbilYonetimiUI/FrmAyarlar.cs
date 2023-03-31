@@ -8,11 +8,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AkbilYonetimiIsKatmani;
+using AkbilYonetimiVeriKatmani;
+using AkbilYonetimiVeriKatmani.Models;
 
 namespace AkbilYonetimiUI
 {
     public partial class FrmAyarlar : Form
     {
+        AkbildbContext context = new AkbildbContext();
         public FrmAyarlar()
         {
             InitializeComponent();
@@ -32,36 +36,18 @@ namespace AkbilYonetimiUI
         {
             try
             {
-                //NOT: Giriş yapmış kullanıcının bilgileriyle select sorgusu yazacağız.
-                //Kullanıcı bilgisini alabilmek için burada 2 yöntem kullanabliriz.
-                //Static bir class açıp içinde static GirisYapmisKullaniciEmail propertysi kullanılabilir.
-                //2. Yöntem olarak Properties settings içine kayıtlı email bilgisinden yararlanılabilir.
-
-                if (string.IsNullOrEmpty(Properties.Settings1.Default.KullaniciEmail))
+                var kullanici = context.Kullanicilars.FirstOrDefault(x => x.Id == GenelIslemler.GirisYapanKullaniciID);
+                if (kullanici != null)
                 {
-                    MessageBox.Show("Giriş yapmadan bu sayfaya ulaamazsınız!");
-                    return;
-                    //Giriş formuna gönlendirilebilir.... showdialog()
+                    txtIsim.Text = kullanici.Ad;
+                    txtSoyisim.Text = kullanici.Soyad;
+                    txtEmail.Text = kullanici.Email;
+                    txtEmail.Enabled = false;
+                    dtpDogumTarihi.Value = kullanici.DogumTarihi.Value;
                 }
                 else
                 {
-                    string baglantiCumlesi = @"Server=DESKTOP-E30TBPJ;Database=AKBILDB;Trusted_Connection=True;";
-                    SqlConnection baglanti = new SqlConnection(baglantiCumlesi);
-                    SqlCommand komut = new SqlCommand($"select*from Kullanicilar where Email='{Properties.Settings1.Default.KullaniciEmail}' and Parola='{Properties.Settings1.Default.KullaniciSifre}'", baglanti);
-                    baglanti.Open();
-                    SqlDataReader okuyucu = komut.ExecuteReader();
-                    if (okuyucu.HasRows)
-                    {
-                        while (okuyucu.Read())
-                        {
-                            txtEmail.Text = okuyucu["Email"].ToString();
-                            txtEmail.Enabled = false;
-                            txtIsim.Text = okuyucu["Ad"].ToString();
-                            txtSoyisim.Text = okuyucu["Soyad"].ToString();
-                            dtpDogumTarihi.Value = Convert.ToDateTime(okuyucu["DogumTarihi"]);
-                        }
-                    }
-                    baglanti.Close();
+                    MessageBox.Show("Kullanıcı bilgilerini getirirken bir sorun oluştu!!");
                 }
 
             }
@@ -75,31 +61,64 @@ namespace AkbilYonetimiUI
         {
             try
             {
-                string baglantiCumlesi = @"Server=DESKTOP-E30TBPJ;Database=AKBILDB;Trusted_Connection=True;";
-                SqlConnection baglanti = new SqlConnection(baglantiCumlesi);
-                string sorgu = $"update Kullanicilar set Ad='{txtIsim.Text.Trim()}',Soyad='{txtSoyisim.Text.Trim()}',DogumTarihi='{dtpDogumTarihi.Value.ToString("yyyyMMdd")}'";
-                if (!string.IsNullOrEmpty(txtSifre.Text))
+                var kullanici = context.Kullanicilars.FirstOrDefault(x => x.Id == GenelIslemler.GirisYapanKullaniciID);
+                if (kullanici.Ad != null)
                 {
-                    sorgu += $" ,Parola='{txtSifre.Text.Trim()}'";
-                }
-                sorgu += $"where Email='{txtEmail.Text.Trim()}'";
-                SqlCommand komut = new SqlCommand(sorgu, baglanti);
-                baglanti.Open();
-                if (komut.ExecuteNonQuery() > 0)
-                {
-                    MessageBox.Show("Bilgiler Güncellendi !");
-                    KullanicininBilgileriniGetir();
+                    kullanici.Ad = txtIsim.Text.Trim();
+                    kullanici.Soyad = txtSoyisim.Text.Trim();
+                    kullanici.DogumTarihi = dtpDogumTarihi.Value;
+                    if (!string.IsNullOrEmpty(txtSifre.Text.Trim()) && kullanici.Parola != GenelIslemler.MD5Encryption(txtSifre.Text.Trim()))
+                    {
+                            kullanici.Parola = GenelIslemler.MD5Encryption(txtSifre.Text.Trim());
+                            MessageBox.Show("Yeni şifre girişi başarılı!");
+                    }
+                    //else
+                    //{
+                    //    kullanici.Parola = GenelIslemler.MD5Encryption(txtSifre.Text.Trim());
+
+                    //}
+                    context.Kullanicilars.Update(kullanici);
+                    if (context.SaveChanges()>0)
+                    {
+                        MessageBox.Show("Bilgileriniz Güncellendi!");
+                        FrmAnasayfa frma = new FrmAnasayfa();
+                        this.Hide();
+                        frma.Show();
+
+                    }
 
                 }
-                else
-                {
 
-                }
             }
             catch (Exception hata)
             {
                 MessageBox.Show("Güncelleme BAŞARISIZDIR!" + hata.Message);
             }
+        }
+
+        private void aNASAYFAToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmAnasayfa frma = new FrmAnasayfa();
+            this.Hide();
+            frma.Show();
+        }
+
+        private void cIKISYAPToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            MessageBox.Show("Güle Güle Çıkış Yapıldı");
+            GenelIslemler.GirisYapanKullaniciAdSoyad = string.Empty;
+            GenelIslemler.GirisYapanKullaniciID = 0;
+
+            frmGiris giris = new frmGiris();
+            foreach (Form item in Application.OpenForms)
+            {
+                if (item.Name != "frmGiris")
+                {
+                    item.Hide();
+                }
+            }
+            giris.Show();
         }
     }
 }

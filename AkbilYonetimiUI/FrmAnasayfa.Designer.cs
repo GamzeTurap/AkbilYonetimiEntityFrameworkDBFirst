@@ -86,7 +86,7 @@
             ForeColor = Color.DarkGray;
             Name = "FrmAnasayfa";
             Text = "FrmAnasayfa";
-
+            FormClosed += FrmAnasayfa_FormClosed;
             ResumeLayout(false);
         }
 

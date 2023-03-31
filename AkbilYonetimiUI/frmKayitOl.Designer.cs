@@ -30,7 +30,7 @@
         {
             groupBox1 = new GroupBox();
             dtpDogumTarihi = new DateTimePicker();
-            btnGiris = new Button();
+            btnGirisYap = new Button();
             txtIsim = new TextBox();
             btnKayitOl = new Button();
             label1 = new Label();
@@ -41,14 +41,18 @@
             txtSoyisim = new TextBox();
             label4 = new Label();
             label5 = new Label();
+            menuStrip1 = new MenuStrip();
+            aNASAYFAToolStripMenuItem = new ToolStripMenuItem();
+            cIKISYAPToolStripMenuItem = new ToolStripMenuItem();
             groupBox1.SuspendLayout();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // groupBox1
             // 
             groupBox1.BackColor = Color.Transparent;
             groupBox1.Controls.Add(dtpDogumTarihi);
-            groupBox1.Controls.Add(btnGiris);
+            groupBox1.Controls.Add(btnGirisYap);
             groupBox1.Controls.Add(txtIsim);
             groupBox1.Controls.Add(btnKayitOl);
             groupBox1.Controls.Add(label1);
@@ -60,9 +64,9 @@
             groupBox1.Controls.Add(label4);
             groupBox1.Controls.Add(label5);
             groupBox1.Dock = DockStyle.Right;
-            groupBox1.Location = new Point(376, 0);
+            groupBox1.Location = new Point(376, 25);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(332, 370);
+            groupBox1.Size = new Size(332, 345);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             // 
@@ -74,16 +78,16 @@
             dtpDogumTarihi.Size = new Size(212, 25);
             dtpDogumTarihi.TabIndex = 4;
             // 
-            // btnGiris
+            // btnGirisYap
             // 
-            btnGiris.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
-            btnGiris.Location = new Point(111, 261);
-            btnGiris.Name = "btnGiris";
-            btnGiris.Size = new Size(212, 36);
-            btnGiris.TabIndex = 6;
-            btnGiris.Text = "GİRİŞ YAP";
-            btnGiris.UseVisualStyleBackColor = true;
-            btnGiris.Click += btnGiris_Click;
+            btnGirisYap.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
+            btnGirisYap.Location = new Point(111, 261);
+            btnGirisYap.Name = "btnGirisYap";
+            btnGirisYap.Size = new Size(212, 36);
+            btnGirisYap.TabIndex = 6;
+            btnGirisYap.Text = "GİRİŞ YAP";
+            btnGirisYap.UseVisualStyleBackColor = true;
+            btnGirisYap.Click += btnGiris_Click;
             // 
             // txtIsim
             // 
@@ -179,6 +183,31 @@
             label5.TabIndex = 40;
             label5.Text = "ŞİFRE :";
             // 
+            // menuStrip1
+            // 
+            menuStrip1.Items.AddRange(new ToolStripItem[] { aNASAYFAToolStripMenuItem, cIKISYAPToolStripMenuItem });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(708, 25);
+            menuStrip1.TabIndex = 1;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // aNASAYFAToolStripMenuItem
+            // 
+            aNASAYFAToolStripMenuItem.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            aNASAYFAToolStripMenuItem.Name = "aNASAYFAToolStripMenuItem";
+            aNASAYFAToolStripMenuItem.Size = new Size(90, 21);
+            aNASAYFAToolStripMenuItem.Text = "ANA SAYFA";
+            aNASAYFAToolStripMenuItem.Click += aNASAYFAToolStripMenuItem_Click;
+            // 
+            // cIKISYAPToolStripMenuItem
+            // 
+            cIKISYAPToolStripMenuItem.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            cIKISYAPToolStripMenuItem.Name = "cIKISYAPToolStripMenuItem";
+            cIKISYAPToolStripMenuItem.Size = new Size(79, 21);
+            cIKISYAPToolStripMenuItem.Text = "CIKIS YAP";
+            cIKISYAPToolStripMenuItem.Click += cIKISYAPToolStripMenuItem_Click;
+            // 
             // frmKayitOl
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -187,20 +216,25 @@
             BackgroundImage = Properties.Resources.c53c9495_833a_e411_a1b0_14feb5cc13c9;
             ClientSize = new Size(708, 370);
             Controls.Add(groupBox1);
+            Controls.Add(menuStrip1);
+            MainMenuStrip = menuStrip1;
             Name = "frmKayitOl";
             Text = "frmKayitOl";
             FormClosed += frmKayitOl_FormClosed;
             Load += frmKayitOl_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private GroupBox groupBox1;
         private DateTimePicker dtpDogumTarihi;
-        private Button btnGiris;
+        private Button btnGirisYap;
         private TextBox txtIsim;
         private Button btnKayitOl;
         private Label label1;
@@ -211,5 +245,8 @@
         private TextBox txtSoyisim;
         private Label label4;
         private Label label5;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem aNASAYFAToolStripMenuItem;
+        private ToolStripMenuItem cIKISYAPToolStripMenuItem;
     }
 }

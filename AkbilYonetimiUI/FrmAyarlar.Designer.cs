@@ -40,7 +40,11 @@
             dtpDogumTarihi = new DateTimePicker();
             txtSifre = new TextBox();
             groupBox1 = new GroupBox();
+            menuStrip1 = new MenuStrip();
+            aNASAYFAToolStripMenuItem = new ToolStripMenuItem();
+            cIKISYAPToolStripMenuItem = new ToolStripMenuItem();
             groupBox1.SuspendLayout();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -158,11 +162,36 @@
             groupBox1.Controls.Add(txtIsim);
             groupBox1.Controls.Add(label4);
             groupBox1.Controls.Add(label5);
-            groupBox1.Location = new Point(12, 2);
+            groupBox1.Location = new Point(12, 29);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(334, 276);
             groupBox1.TabIndex = 8;
             groupBox1.TabStop = false;
+            // 
+            // menuStrip1
+            // 
+            menuStrip1.Items.AddRange(new ToolStripItem[] { aNASAYFAToolStripMenuItem, cIKISYAPToolStripMenuItem });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(653, 25);
+            menuStrip1.TabIndex = 9;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // aNASAYFAToolStripMenuItem
+            // 
+            aNASAYFAToolStripMenuItem.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            aNASAYFAToolStripMenuItem.Name = "aNASAYFAToolStripMenuItem";
+            aNASAYFAToolStripMenuItem.Size = new Size(90, 21);
+            aNASAYFAToolStripMenuItem.Text = "ANA SAYFA";
+            aNASAYFAToolStripMenuItem.Click += aNASAYFAToolStripMenuItem_Click;
+            // 
+            // cIKISYAPToolStripMenuItem
+            // 
+            cIKISYAPToolStripMenuItem.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            cIKISYAPToolStripMenuItem.Name = "cIKISYAPToolStripMenuItem";
+            cIKISYAPToolStripMenuItem.Size = new Size(79, 21);
+            cIKISYAPToolStripMenuItem.Text = "CIKIS YAP";
+            cIKISYAPToolStripMenuItem.Click += cIKISYAPToolStripMenuItem_Click;
             // 
             // FrmAyarlar
             // 
@@ -171,16 +200,21 @@
             BackColor = Color.CadetBlue;
             BackgroundImage = Properties.Resources.Ekran_görüntüsü_2023_03_24_111659;
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(608, 378);
+            ClientSize = new Size(653, 378);
             Controls.Add(groupBox1);
+            Controls.Add(menuStrip1);
             DoubleBuffered = true;
             ForeColor = Color.MediumBlue;
+            MainMenuStrip = menuStrip1;
             Name = "FrmAyarlar";
             Text = "FrmAyarlar";
             Load += FrmAyarlar_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -197,5 +231,8 @@
         private DateTimePicker dtpDogumTarihi;
         private TextBox txtSifre;
         private GroupBox groupBox1;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem aNASAYFAToolStripMenuItem;
+        private ToolStripMenuItem cIKISYAPToolStripMenuItem;
     }
 }
