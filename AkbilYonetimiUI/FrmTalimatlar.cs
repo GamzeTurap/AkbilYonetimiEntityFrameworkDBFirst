@@ -312,6 +312,13 @@ namespace AkbilYonetimiUI
                 if (item.Name != "frmGiris")
                 {
                     item.Hide();
+
+
+
+
+
+
+
                 }
             }
             giris.Show();
